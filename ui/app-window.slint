@@ -1,0 +1,40 @@
+import { Button, VerticalBox, Spinner, HorizontalBox } from "std-widgets.slint";
+import { TestComponent } from "test1.slint";
+import { SideBar, SidebarItemData } from "SideBar.slint";
+import { PageContainer } from "PageContainer.slint";
+import "./fonts/JetBrainsMono-Regular.ttf";
+
+export component AppWindow inherits Window {
+    in-out property <int> counter: 42;
+    callback request-increase-value();
+    default-font-family: "JetBrains Mono";
+    default-font-size: 18px;
+
+    property <[SidebarItemData]> menu_items: [
+        { text: "Home", id: 0 },
+        { text: "Settings", id: 1 },
+        { text: "About", id: 2 },
+    ];
+
+    property <int> current_index: 0;
+
+    title: "cfg-watcher";
+
+    HorizontalLayout {
+        spacing: 7px;
+        padding: 7px;
+        SideBar {
+            title: "CFG Watcher";
+            w: 170px;
+            items: root.menu_items;
+            selected_index: root.current_index;
+            item_clicked(id) => {
+                root.current_index = id;
+            }
+        }
+        PageContainer {
+            active_page: current_index;
+        }
+    }
+    
+}
