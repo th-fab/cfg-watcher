@@ -1,0 +1,90 @@
+import { ListView, VerticalBox } from "std-widgets.slint";
+
+export struct SidebarItemData {
+    text: string,
+    id: int,        // or int, whatever you need
+}
+
+export component SideBar {
+    // list of items passed in from outside
+    in property <[SidebarItemData]> items;
+    in property <int> selected_index;
+    in property <string> title;
+    // notify parent when a menu entry is clicked
+    callback item_clicked(int);
+    in property <length> w;
+    VerticalLayout {
+        Rectangle {
+            background: #191a1c;
+            border-radius: 10px;
+
+            VerticalLayout {
+                height: 100%;
+                width: w;
+                //padding: 10px;
+                Text {
+                    text: title;
+                    horizontal-alignment: center;
+                    font-size: 24px;
+                }
+
+                Rectangle {
+                    height: 20px;
+                }
+
+                ListView {
+                    //height: 100%;
+                    //width: w - 2*10px;
+                    width: parent.width;
+                    for item[index] in root.items: Rectangle {
+                        height: 38px;
+                        width: 100%;
+
+                        Rectangle {
+                            height: parent.height - 10px;
+                            width: parent.width - 4px;
+                            background: index == root.selected_index ? #444 : #191a1c;
+                             //border-color: #AAAAAA;
+                             //border-width: ta.has-hover ? 1px : 0px;
+                            border-radius: 7px;
+                            drop-shadow-color: #0033FA;
+                            drop-shadow-blur: ta.has-hover ? 7px : 0px;
+                            animate drop-shadow-blur { duration: 100ms;}
+                            animate background {duration: 100ms;}
+
+                            Text {
+                                text: item.text;
+
+                                color: index == root.selected_index ? #fff : #ccc;
+                                vertical-alignment: TextVerticalAlignment.center;
+                                horizontal-alignment: TextHorizontalAlignment.center;
+                            //x: 8px;
+                        }
+
+                            ta := TouchArea {
+                                mouse-cursor: pointer;
+                                clicked => {
+                                    root.item_clicked(item.id);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Rectangle {
+            height: 7px;
+        }
+
+        Rectangle {
+            background: #191a1c;
+            border-radius: 10px;
+            height: 35px;
+            Text {
+                text: "Info-Box";
+                horizontal-alignment: TextHorizontalAlignment.center;
+            }
+        }
+    }
+}
