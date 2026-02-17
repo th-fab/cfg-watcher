@@ -8,7 +8,7 @@
       "binaryDir": "cmake-build-debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-		 "SLINT_STYLE": "material"
+        "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
@@ -18,7 +18,7 @@
       "binaryDir": "cmake-build-release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-		 "SLINT_STYLE": "material"
+        "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     }
   ]
