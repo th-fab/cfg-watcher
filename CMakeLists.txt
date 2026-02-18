@@ -20,7 +20,11 @@ find_package(libconfig REQUIRED)
 # Define the Executeable
 add_executable(cfg-watcher
         src/main.cpp
-        src/Settings.cpp
+        src/Settings_old.cpp
+        src/Registry.cpp
+        src/AppSettings.cpp
+        src/Serialization.cpp
+        src/SettingsModel.cpp
 )
 
 set(CMAKE_VERBOSE_MAKEFILE ON)

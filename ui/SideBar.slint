@@ -1,4 +1,6 @@
 import { ListView, VerticalBox } from "std-widgets.slint";
+import { AppColors } from "color-palette.slint";
+export { AppColors }
 
 export struct SidebarItemData {
     text: string,
@@ -15,18 +17,31 @@ export component SideBar {
     in property <length> w;
     VerticalLayout {
         Rectangle {
-            background: #191a1c;
+            background: AppColors.content_bg;
+            border-radius: 10px;
+            height: 50px;
+            Text {
+                text: title;
+                horizontal-alignment: center;
+                vertical-alignment: center;
+                font-size: 20px;
+            }
+            
+        }
+
+        Rectangle {
+            height: 7px;
+        }
+
+        Rectangle {
+            background: AppColors.content_bg;
             border-radius: 10px;
 
             VerticalLayout {
                 height: 100%;
                 width: w;
                 //padding: 10px;
-                Text {
-                    text: title;
-                    horizontal-alignment: center;
-                    font-size: 24px;
-                }
+                padding-top: 10px;
 
                 Rectangle {
                     height: 20px;
@@ -44,11 +59,11 @@ export component SideBar {
                             height: parent.height - 10px;
                             width: parent.width - 4px;
                             background: index == root.selected_index ? #444 : #191a1c;
-                             border-color: #AAAAFA;
-                             border-width: ta.has-hover ? 1px : 0px;
+                            border-color: #AAAAFA;
+                            border-width: ta.has-hover ? 1px : 0px;
                             border-radius: 7px;
 
-                            animate background {duration: 100ms;}
+                            animate background { duration: 100ms; }
 
                             Text {
                                 text: item.text;
@@ -78,7 +93,7 @@ export component SideBar {
         Rectangle {
             background: #191a1c;
             border-radius: 10px;
-            height: 35px;
+            height: 50px;
             Text {
                 text: "Info-Box";
                 horizontal-alignment: TextHorizontalAlignment.center;

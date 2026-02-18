@@ -1,10 +1,43 @@
-export component PageContainer inherits Rectangle{
+import { AppColors } from "color-palette.slint";
+export {AppColors}
+
+export component PageContainer inherits Rectangle {
     out property <string> current_page_title;
     in property <int> active_page;
-    background: #191a1c;
-    border-radius: 10px;
-    min-height: 500px;
-    min-width: 500px;
+    current_page_title: "Welcome!";
 
+    VerticalLayout {
 
+        Rectangle {
+
+            background: AppColors.content_bg;
+            border-radius: 10px;
+            height: 50px;
+            HorizontalLayout {
+                Rectangle {
+                    width: 30px;
+                }
+
+                Text {
+                    text: current_page_title;
+                    vertical-alignment: center;
+                    horizontal-alignment: left;
+                    font-size: 20px;
+                }
+
+                Rectangle { }
+            }
+        }
+
+        Rectangle {
+            height: 7px;
+        }
+
+        content-area := Rectangle {
+            background: AppColors.content_bg;
+            border-radius: 10px;
+            //min-height: 500px;
+            //min-width: 500px;
+        }
+    }
 }

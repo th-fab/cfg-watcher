@@ -2,7 +2,7 @@
 // Created by Fabian on 12.02.2026.
 //
 
-#include "Settings.h"
+#include "Settings_old.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -10,7 +10,7 @@
 std::string group_header = "appsettings";
 std::string cfg_filename = "settings.cfg";
 
-namespace Settings {
+namespace Settings_old {
     void write_value(lc::Setting& parent,
                      const std::string& key,
                      const AppSetting& value)

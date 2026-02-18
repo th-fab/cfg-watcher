@@ -3,12 +3,18 @@ import { TestComponent } from "test1.slint";
 import { SideBar, SidebarItemData } from "SideBar.slint";
 import { PageContainer } from "PageContainer.slint";
 import "./fonts/JetBrainsMono-Regular.ttf";
+import {AppColors} from "color-palette.slint";
+export {AppColors}
 
 export component AppWindow inherits Window {
     in-out property <int> counter: 42;
     callback request-increase-value();
     default-font-family: "JetBrains Mono";
     default-font-size: 18px;
+    background: AppColors.window_bg;
+    min-width: 1280px;
+    min-height: 720px;
+    resize-border-width: 10px;
 
     property <[SidebarItemData]> menu_items: [
         { text: "Home", id: 0 },
@@ -25,7 +31,7 @@ export component AppWindow inherits Window {
         padding: 7px;
         SideBar {
             title: "CFG Watcher";
-            w: 170px;
+            w: 200px;
             items: root.menu_items;
             selected_index: root.current_index;
             item_clicked(id) => {
